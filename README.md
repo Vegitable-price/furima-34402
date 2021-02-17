@@ -9,13 +9,11 @@
 | --------      | ------ | ----------- |
 | nickname      | string | null: false |
 | email         | string | unique: true|
-|encrypted_password| string | null: false |
+|encrypted_password| string | null: false, null: false |
 |first_name     | string | null: false |
 |last_name      | string | null: false |
 |first_name_kana| string | null: false |
 |last_name_kana | string | null: false |
-|birth_year     | date   | foreign_key: true |
-|birth_month    | date   | foreign_key: true |
 |birth_day      | date   | foreign_key: true |
 
 ### Association
@@ -32,11 +30,11 @@
 | price       | integer  | null: false                    |
 | user        |references| null: false,foreign_key:true   |
 |prefecture_id| integer  | null: false                    |
-|ship_day_id  |integer   | null: false, foreign_key: true |
-| status_id   | integer  | null: false, foreign_key: true |
+|ship_day_id  |integer   | null: false,                   |
+| status_id   | integer  | null: false,                   |
 | describe    | text     | null: false                    |
-| genre_id    | integer  | null: false, foreign_key: true |
-|ship_fee_id  | integer  | null: false, foreign_key: true |
+| genre_id    | integer  | null: false,                   |
+|ship_fee_id  | integer  | null: false,                   |
 
 ### Association
 
