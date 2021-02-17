@@ -26,22 +26,22 @@
 
 ## items テーブル
 
-| Column   | Type   | Options                        |
-| ------   | ------ | ------------------------------ |
-| name     | string | null: false                    |
-| price    | integer| null: false                    |
-| user     |references| null: false,foreign_key:true |
-|prefecture_id| integer| null: false                    |
-| ship_day | text   | null: false, foreign_key: true |
-| status   | text   | null: false, foreign_key: true |
-| describe | text   | null: false                    |
-| genre    | text   | null: false, foreign_key: true |
-| ship_fee | text   | null: false, foreign_key: true |
+| Column      | Type     | Options                        |
+| ------      | ------   | ------------------------------ |
+| name        | string   | null: false                    |
+| price       | integer  | null: false                    |
+| user        |references| null: false,foreign_key:true   |
+|prefecture_id| integer  | null: false                    |
+|ship_day_id  |integer   | null: false, foreign_key: true |
+| status_id   | integer  | null: false, foreign_key: true |
+| describe    | text     | null: false                    |
+| genre_id    | integer  | null: false, foreign_key: true |
+|ship_fee_id  | integer  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :purchase
+- has_one :purchase
 
 
 ## purchases テーブル
@@ -50,15 +50,15 @@
 | ------  | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
-| price   | string     | null: false                    |
+
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :addres
+- has_one :address
 
-## address テーブル
+## addresss テーブル
 
 | Column    | Type       | Options                        |
 | -------   | ---------- | ------------------------------ |
