@@ -14,7 +14,7 @@
 |last_name      | string | null: false |
 |first_name_kana| string | null: false |
 |last_name_kana | string | null: false |
-|birth_day      | date   | foreign_key: true |
+|birth_day      | date   |             |
 
 ### Association
 
