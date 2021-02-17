@@ -8,8 +8,8 @@
 | Column        | Type   | Options     |
 | --------      | ------ | ----------- |
 | nickname      | string | null: false |
-| email         | string | unique: true|
-|encrypted_password| string | null: false, null: false |
+| email         | string | null: false, unique: true|
+|encrypted_password|string| null: false|
 |first_name     | string | null: false |
 |last_name      | string | null: false |
 |first_name_kana| string | null: false |
@@ -61,7 +61,7 @@
 | Column    | Type       | Options                        |
 | -------   | ---------- | ------------------------------ |
 |post_number| string     | null: false                    |
-|prefecture_id| integer  | null: false,                   |
+|prefecture_id| integer  |                   |
 |city       | string     | null: false                    |
 |street     | string     | null: false                    |
 |building   | string     |                                |
