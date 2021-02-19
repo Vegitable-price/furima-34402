@@ -67,27 +67,27 @@ describe '商品の出品' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not a number")
     end    
-    it "無効なidの場合投稿できない" do
+    it "カテゴリーの情報が無効なidの場合投稿できない" do
       @item.genre_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Genre must be other than 0")
     end   
-    it "無効なidの場合投稿できない" do
+    it "商品の状態の情報が無効なidの場合投稿できない" do
     @item.status_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Status must be other than 0")
     end  
-    it "無効なidの場合投稿できない" do
+    it "配送料の情報が無効なidの場合投稿できない" do
     @item.ship_fee_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Ship fee must be other than 0")
     end    
-    it "無効なidの場合投稿できない" do
+    it "発送元の情報が無効なidの場合投稿できない" do
     @item.prefecture_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
     end  
-    it "無効なidの場合投稿できない" do
+    it "発送までの日数の情報が無効なidの場合投稿できない" do
     @item.ship_day_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Ship day must be other than 0")
