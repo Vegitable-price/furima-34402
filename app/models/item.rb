@@ -9,16 +9,15 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :ship_fee
 
+  validates :price, format: { with: /\A[0-9]+\z/ }
   with_options presence: true do
     validates :name
-    validates :price, format: { with: /^[0-9]+$/ }
     validates :image
-    with_options numericality: { other_than: 0 } do
     validates :genre_id
     validates :prefecture_id
     validates :ship_day_id
     validates :status_id
     validates :ship_fee_id
-    end
+    validates :price
   end
 end
