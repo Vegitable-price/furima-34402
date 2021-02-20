@@ -1,6 +1,6 @@
 class Genre < ActiveHash::Base
   self.data = [
-    { id: 0, name: '---' },  
+    { id: 0, name: '---' },
     { id: 1, name: 'レディース' },
     { id: 2, name: 'メンズ' },
     { id: 3, name: 'ベビー・キッズ' },
@@ -12,9 +12,7 @@ class Genre < ActiveHash::Base
     { id: 9, name: 'ハンドメイド' },
     { id: 10, name: 'その他' }
   ]
- 
-   include ActiveHash::Associations
-   has_many :items
- 
-  
+
+  include ActiveHash::Associations
+  has_many :items
 end
