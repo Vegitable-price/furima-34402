@@ -13,6 +13,11 @@ RSpec.describe Purchase, type: :model do
       it '全ての値を正しく入力されていれば保存できること' do
         expect(@address_purchase).to be_valid
       end
+
+      it 'buildingが空でも保存できること' do
+        @address_purchase.building = nil
+        expect(@address_purchase).to be_valid
+      end
     end
 
     context '商品の購入ができない場合' do
@@ -24,6 +29,12 @@ RSpec.describe Purchase, type: :model do
 
       it 'prefectureを選択してないと保存できないこと' do
         @address_purchase.prefecture_id = ''
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
+      it 'prefectureで0を選択された場合は保存できない' do
+        @address_purchase.prefecture_id = 0
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -41,12 +52,18 @@ RSpec.describe Purchase, type: :model do
       end
 
       it 'phoneは空では保存できない' do
-        @address_purchase.phone = ''
+        @address_purchase.phone = '0809876787'
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include("Phone can't be blank")
       end
 
       it 'post_numberが半角のハイフンを含んだ正しい形式でないと保存できない' do
+        @address_purchase.post_number = '1234567'
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
+      end
+
+      it 'post_numberが半角のハイフンを含んだ3桁-4桁でないと保存できない' do
         @address_purchase.post_number = '1234567'
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
@@ -62,6 +79,18 @@ RSpec.describe Purchase, type: :model do
         @address_purchase.token = nil
         @address_purchase.valid?
         expect(@address_purchase.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it "ユーザーが紐付いていなければ投稿できない" do
+        @address_purchase.user_id = nil
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "商品が紐付いていなければ投稿できない" do
+        @address_purchase.item_id = nil
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
