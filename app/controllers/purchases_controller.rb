@@ -4,12 +4,10 @@ class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
   def index
     @address_purchase = AddressPurchase.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @address_purchase = AddressPurchase.new(purchase_params)
-    @item = Item.find(params[:item_id])
     if @address_purchase.valid?
       pay_item
       @address_purchase.save

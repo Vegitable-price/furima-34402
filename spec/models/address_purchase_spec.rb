@@ -75,6 +75,12 @@ RSpec.describe Purchase, type: :model do
         expect(@address_purchase.errors.full_messages).to include("Phone can't be blank", "Phone can't be blank")
       end
 
+      it 'phoneはハイフンは無しで十一桁以内の数値のみでしか保存できない' do
+        @address_purchase.phone = '0728-1234-5678'
+        @address_purchase.valid?
+        expect(@address_purchase.errors.full_messages).to include("Phone can't be blank", "Phone can't be blank")
+      end
+
       it 'tokenがからでは登録できないこと' do
         @address_purchase.token = nil
         @address_purchase.valid?
