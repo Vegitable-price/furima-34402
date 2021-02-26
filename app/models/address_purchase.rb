@@ -8,7 +8,7 @@ class AddressPurchase
     validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :street
-    validates :phone, format: { with: /\A\d{11}\z/, message: "Phone number Input only number" }
+    validates :phone, format: { with: /\A\d{11}\z/, message: "number Input only number" }
     validates :token
   end
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
