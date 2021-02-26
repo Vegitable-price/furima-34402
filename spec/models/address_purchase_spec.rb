@@ -54,7 +54,7 @@ RSpec.describe Purchase, type: :model do
       it 'phoneは空では保存できない' do
         @address_purchase.phone = '0809876787'
         @address_purchase.valid?
-        expect(@address_purchase.errors.full_messages).to include("Phone can't be blank")
+        expect(@address_purchase.errors.full_messages).to include("Phone Phone number Input only number")
       end
 
       it 'post_numberが半角のハイフンを含んだ正しい形式でないと保存できない' do
@@ -72,13 +72,13 @@ RSpec.describe Purchase, type: :model do
       it 'phoneは十一桁の数値のみでしか保存できない' do
         @address_purchase.phone = ''
         @address_purchase.valid?
-        expect(@address_purchase.errors.full_messages).to include("Phone can't be blank", "Phone can't be blank")
+        expect(@address_purchase.errors.full_messages).to include("Phone can't be blank", "Phone Phone number Input only number")
       end
 
       it 'phoneはハイフンは無しで十一桁以内の数値のみでしか保存できない' do
         @address_purchase.phone = '0728-1234-5678'
         @address_purchase.valid?
-        expect(@address_purchase.errors.full_messages).to include("Phone can't be blank", "Phone can't be blank")
+        expect(@address_purchase.errors.full_messages).to include("Phone Phone number Input only number")
       end
 
       it 'tokenがからでは登録できないこと' do
