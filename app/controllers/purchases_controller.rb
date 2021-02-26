@@ -10,7 +10,7 @@ class PurchasesController < ApplicationController
      @address_purchase = AddressPurchase.new(purchase_params)
      @item = Item.find(params[:item_id])
      if @address_purchase.valid?
-       
+       pay_item
        @address_purchase.save
        redirect_to root_path
      else
@@ -26,6 +26,15 @@ class PurchasesController < ApplicationController
 
   def address_params
     params.permit(:post_number, :prefecture_id, :city, :street, :building, :phone, :purchase)
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
+    Payjp::Charge.create(
+      amount: order_params[:price],  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
   end
       
   def move_to_index
