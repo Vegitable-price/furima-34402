@@ -10,7 +10,6 @@ class AddressPurchase
     validates :street
     validates :phone, format: { with: /\A\d{11}\z/, message: "number Input only number" }
     validates :token
-    validates :price
   end
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 

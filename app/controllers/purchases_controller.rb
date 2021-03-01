@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
 
   def create
     @address_purchase = AddressPurchase.new(purchase_params)
-    if @address_purchase
+    if @address_purchase.valid?
       pay_item
       @address_purchase.save
       redirect_to root_path
@@ -30,6 +30,7 @@ class PurchasesController < ApplicationController
       amount: @item.price,  
       card: purchase_params[:token],    
       currency: 'jpy'                 
+      
     )
   end
 
