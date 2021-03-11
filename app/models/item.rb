@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :image
     validates :price
     validates :describe
-    with_options numericality: { other_than: 0 } do
+    with_options numericality: { other_than: 0 ,message: 'を選択してください'} do
       validates :genre_id
       validates :prefecture_id
       validates :ship_day_id
