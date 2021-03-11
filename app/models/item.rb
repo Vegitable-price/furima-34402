@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999
   with_options presence: true do
     validates :name
-    validates :image
+    validates :image, :image, presence: true
     validates :price
     validates :describe
     with_options numericality: { other_than: 0 ,message: 'を選択してください'} do
