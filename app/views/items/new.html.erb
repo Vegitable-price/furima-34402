@@ -5,7 +5,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with(model: @item, local: true) do |f| %>
+    <%= form_with(model: @item, url: items_path, local: true) do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
     
@@ -22,8 +22,10 @@
         <%= f.file_field :images, name: 'item[images][]', id: "item-image" %>
           <div id="image-list"></div>
       </div>
-      <% @item.images.each do |image| %>
-        <%= image_tag image, class: 'images' %>
+      <% if @item.images.present? %>
+        <% @item.images.each do |image| %>
+          <%= image_tag image, class: 'images' %>
+        <% end %>
       <% end %>
     </div>
     <%# /出品画像 %>
@@ -34,6 +36,10 @@
         <span class="indispensable">必須</span>
       </div>
       <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+      <div class="tag-field", id='tag-field'>
+        <%= f.label :tag_name, "タグ" %>
+        <%= f.text_field :tag_name, class:"input-tag" %>
+      </div>
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
