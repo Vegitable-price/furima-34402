@@ -3,9 +3,11 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :edit, :destroy]
   before_action :prevent_edit, only: [:edit, :update, :destroy]
   before_action :sold_item, only: [:edit, :update, :destroy]
+  before_action :set_search
 
   def index
     @items = Item.order('created_at DESC')
+    set_item_column
   end
 
   def new
@@ -47,6 +49,9 @@ class ItemsController < ApplicationController
     render json:{ keyword: tag }
   end
 
+  def ransack_search
+  end
+
   private
 
   def item_params
@@ -60,8 +65,21 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+  
+  def sold_item
+    redirect_to root_path if @item.purchase.present?
+  end
+
+  def set_search
+    @search = Item.ransack(params[:q])
+    @items = @search.result
+
+  end
+
+  def set_item_column
+    @item_name = Item.select("name").distinct
+  end
+
 end
 
-def sold_item
-  redirect_to root_path if @item.purchase.present?
-end
+

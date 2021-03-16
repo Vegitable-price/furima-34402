@@ -10,6 +10,4 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :ship_fee
   belongs_to :user
-  belongs_to :category
-
 end

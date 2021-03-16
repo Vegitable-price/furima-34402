@@ -1,0 +1,24 @@
+<h1>
+  検索結果
+</h1>
+
+<% if @items.length !=0 %>
+  <% @items.each do |item| %>
+    <td>
+    <br>
+    <li>
+      <%= item.name %>
+      <%= item.price%>
+      <%= item.genre.name %>
+      <% if item.images.present? %>
+        <% item.images.each do |image| %>
+          <%= image_tag image, class: 'images' %>
+        <% end %>
+      <% end %>
+    <li>
+  <% end %>
+<% else %>
+  該当する商品はありません
+<% end %>
+<br>
+<%= link_to 'トップページへ戻る', root_path %>
