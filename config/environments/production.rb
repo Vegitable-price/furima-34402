@@ -17,7 +17,9 @@ Rails.application.configure do
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
-
+  ActionCable.server.config.disable_request_forgery_protection = true
+  config.action_cable.url = "ws://52.25.115.21"
+  config.action_cable.allowed_request_origins = ['http://52.25.115.21']
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?

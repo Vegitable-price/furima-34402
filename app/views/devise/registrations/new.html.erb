@@ -39,10 +39,18 @@
     </div>
     <%= f.password_field :password_confirmation, class:"input-default", id:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
   </div>
+
+  <%if @sns_id.present? %>
+    <%= hidden_field_tag :sns_auth, true %>
+ <% end %>
+ 
   <div class="actions">
     <%= f.submit "Next" %>
   </div>
   <% end %>
+
+  <%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post%>
+  <%= link_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, method: :post%>
     
   <%= render "shared/second-footer"%>
   

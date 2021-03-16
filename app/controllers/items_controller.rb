@@ -25,6 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @messages = Message.all
+    @message = Message.new
   end
 
   def edit
@@ -55,7 +57,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:items_tag).permit(:name, :describe, :price, :prefecture_id, :ship_fee_id, :ship_day_id, :status_id, :genre_id, images: []).merge(user_id: current_user.id)
+    params.require(:items_tag).permit(:name, :describe, :price, :prefecture_id, :ship_fee_id, :ship_day_id, :status_id, :genre_id, :tag_name, images: []).merge(user_id: current_user.id)
   end
 
   def prevent_edit
@@ -67,7 +69,9 @@ class ItemsController < ApplicationController
   end
   
   def sold_item
-    redirect_to root_path if @item.purchase.present?
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def set_search

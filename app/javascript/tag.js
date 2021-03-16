@@ -21,7 +21,7 @@ if (document.URL.match( /new/ )) {
             searchResult.appendChild(childElement);
             const clickElement = document.getElementById(tag.id);
             clickElement.addEventListener("click", () => {
-              document.getElementById("tweets_tag_name").value = clickElement.textContent;
+              document.getElementById("items_tag_name").value = clickElement.textContent;
               clickElement.remove();
             });
           });

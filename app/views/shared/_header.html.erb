@@ -11,7 +11,7 @@
   </div>
   <%= search_form_for @search, url: ransack_search_items_path do |f| %>
     <%= f.label :name_eq, '商品名' %>
-    <%= f.collection_select :name_eq, @item_name, :name, :name, include_blank: '指定なし' %>
+    <%= f.collection_select :name_eq, Item.all, :id, :name, include_blank: '指定なし' %>
     <br>
     <%= f.label :genre_id_eq, 'カテゴリー：' %>
     <%= f.collection_select :genre_id_eq, Genre.all, :id, :name, include_blank: '指定なし' %>
