@@ -16,6 +16,6 @@ Rails.application.routes.draw do
       get 'search'
       get 'ransack_search'
     end
+    resources :messages, only: :create
   end
-  resources :messages, only: [:create]
 end

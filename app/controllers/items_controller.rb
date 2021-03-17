@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @messages = Message.all
     @message = Message.new
+    @messages = Message.all
   end
 
   def edit
